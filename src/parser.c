@@ -6,7 +6,7 @@
 /*   By: vdenisse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 13:25:39 by vdenisse          #+#    #+#             */
-/*   Updated: 2023/08/21 14:32:59 by vdenisse         ###   ########.fr       */
+/*   Updated: 2023/08/22 13:28:26 by vdenisse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ char *cmd_path_finder(char **args)
 		dup2(fd[1], STDOUT_FILENO);
 		execve("/usr/bin/which", args, NULL);
 	}
+	return (NULL);
 }
 
 t_cmd_data *cmd_parser(char *cmd_str)
@@ -30,6 +31,7 @@ t_cmd_data *cmd_parser(char *cmd_str)
 	t_cmd_data *cmd_data;
 	pid_t child_pid = fork();
 	cmd_data = (t_cmd_data *)malloc(sizeof(t_cmd_data));
+	(void)child_pid;
 
 
 	return (cmd_data);
