@@ -6,7 +6,7 @@
 /*   By: vdenisse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 09:30:24 by vdenisse          #+#    #+#             */
-/*   Updated: 2023/08/24 14:05:40 by vdenisse         ###   ########.fr       */
+/*   Updated: 2023/08/30 15:29:32 by vdenisse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,23 +70,24 @@ char	*path_finder(char *envp[], char *cmd)
 {
 	char *all_path;
 	char *curr_path;
-	int	iter;
-	int	jter;
 
 	all_path = env_var_finder(envp, "PATH=");
 	all_path += 5;
-	iter = 0;
-	jter = 0;
 	while (1)
 	{	
 		curr_path = find_next_path(&all_path, cmd);
 		if (!curr_path)
 			return (NULL);
 		if (access(curr_path, X_OK) == 0)
+		{
+			errno = 0;
 			break;	
+		}
+		perror("after access");
 		free(curr_path);
 		if (*all_path == '\0')
 			return (NULL);
 	}
+	perror("before return");
 	return (curr_path);
 }

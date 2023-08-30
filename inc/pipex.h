@@ -6,7 +6,7 @@
 /*   By: vdenisse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 11:47:45 by vdenisse          #+#    #+#             */
-/*   Updated: 2023/08/29 10:37:24 by vdenisse         ###   ########.fr       */
+/*   Updated: 2023/08/30 14:45:13 by vdenisse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,19 @@
 # include <fcntl.h>
 # include <errno.h>
 # include <string.h>
+
+//needed for perror
 # include <stdio.h>
+
+
 # include <stdlib.h>
 # include <unistd.h>
 # include <sys/wait.h>
+# include <sys/stat.h>
 
-# ifndef TMPFILE
-#  define TMPFILE 0
+
+# ifndef TMPFILE_NAME
+#  define TMPFILE_NAME "tmp_file"
 # endif
 # define OUTPUT 1
 # define INPUT 0
@@ -42,8 +48,10 @@ typedef struct s_data {
 	int	output_fd;
 }				t_data;
 
+t_data	*data_init(int argc, char *argv[], char *envp[]);
 void	exit_handler(int cust_errno, t_data *data);
 void	free_data(t_data *data);
+void	delete_tmp_files(t_data *data);
 char	*path_finder(char *envp[], char *cmd);
 int	execute(int input_fd, t_cmd_data *cmd_data, int output_fd, int iter);
 int	pipex(t_data *data);
