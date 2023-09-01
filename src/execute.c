@@ -6,7 +6,7 @@
 /*   By: vdenisse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 09:46:59 by vdenisse          #+#    #+#             */
-/*   Updated: 2023/08/30 15:14:34 by vdenisse         ###   ########.fr       */
+/*   Updated: 2023/09/01 11:21:06 by vdenisse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,6 @@ int	execute(int input_fd, t_cmd_data *cmd_data, int output_fd, int iter)
 	int	child_status;
 	char *name;
 
-	printf("errno start : [%d]\n", errno);
 	name = (ft_strjoin("tmp_file_no_", ft_itoa(iter)));
 	if (iter != 0)
 	{
@@ -57,8 +56,6 @@ int	execute(int input_fd, t_cmd_data *cmd_data, int output_fd, int iter)
 	if (child == 0)
 		exec_child(input_fd, cmd_data, output_fd);
 	waitpid(child, &child_status, 0);
-	printf("child_status exit : [%d]\n", child_status);
-	printf("errno after wait : [%d]\n", errno);
 	if (child_status != 0)
 	{
 		close(output_fd);

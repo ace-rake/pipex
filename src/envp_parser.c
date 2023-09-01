@@ -6,7 +6,7 @@
 /*   By: vdenisse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 09:30:24 by vdenisse          #+#    #+#             */
-/*   Updated: 2023/08/30 15:29:32 by vdenisse         ###   ########.fr       */
+/*   Updated: 2023/09/01 11:20:43 by vdenisse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,11 +83,9 @@ char	*path_finder(char *envp[], char *cmd)
 			errno = 0;
 			break;	
 		}
-		perror("after access");
 		free(curr_path);
 		if (*all_path == '\0')
 			return (NULL);
 	}
-	perror("before return");
 	return (curr_path);
 }
