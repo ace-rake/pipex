@@ -6,7 +6,7 @@
 /*   By: vdenisse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 14:39:46 by vdenisse          #+#    #+#             */
-/*   Updated: 2023/08/30 14:40:55 by vdenisse         ###   ########.fr       */
+/*   Updated: 2023/09/01 11:53:35 by vdenisse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ void	free_data(t_data *data)
 
 	cmds = data->cmds;
 	iter = 0;
+	if (cmds)
 	while (iter < data->cmd_amount)
 	{
 		if (cmds[iter]->cmd_path)

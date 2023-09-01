@@ -5,11 +5,10 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: vdenisse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/29 09:46:59 by vdenisse          #+#    #+#             */
-/*   Updated: 2023/09/01 11:30:09 by vdenisse         ###   ########.fr       */
+/*   Created: 2023/09/01 12:22:28 by vdenisse          #+#    #+#             */
+/*   Updated: 2023/09/01 12:22:47 by vdenisse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 #include "../inc/pipex.h"
 
 int	create_file(char *name)
@@ -24,8 +23,7 @@ int	create_file(char *name)
 
 int	exec_child(int input, t_cmd_data *cmd_data, int output)
 {
-	if (dup2(input, STDIN_FILENO) == -1 || dup2(output, STDOUT_FILENO))
-	{
+	if (dup2(input, STDIN_FILENO) == -1 || dup2(output, STDOUT_FILENO) == -1)	{
 		close(input);
 		close(output);
 		exit(errno);
