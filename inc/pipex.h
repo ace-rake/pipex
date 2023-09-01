@@ -6,7 +6,7 @@
 /*   By: vdenisse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 11:47:45 by vdenisse          #+#    #+#             */
-/*   Updated: 2023/08/30 14:45:13 by vdenisse         ###   ########.fr       */
+/*   Updated: 2023/09/01 11:30:07 by vdenisse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,6 @@ void	exit_handler(int cust_errno, t_data *data);
 void	free_data(t_data *data);
 void	delete_tmp_files(t_data *data);
 char	*path_finder(char *envp[], char *cmd);
-int	execute(int input_fd, t_cmd_data *cmd_data, int output_fd, int iter);
+int	execute(int *input_fd, t_cmd_data *cmd_data, int output_fd, int iter);
 int	pipex(t_data *data);
 #endif

@@ -6,7 +6,7 @@
 /*   By: vdenisse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 09:46:59 by vdenisse          #+#    #+#             */
-/*   Updated: 2023/09/01 11:21:06 by vdenisse         ###   ########.fr       */
+/*   Updated: 2023/09/01 11:30:09 by vdenisse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int	exec_child(int input, t_cmd_data *cmd_data, int output)
 }
 
 //return output_fd
-int	execute(int input_fd, t_cmd_data *cmd_data, int output_fd, int iter)
+int	execute(int *input_fd, t_cmd_data *cmd_data, int output_fd, int iter)
 {
 	pid_t child;
 	int	child_status;
@@ -46,15 +46,15 @@ int	execute(int input_fd, t_cmd_data *cmd_data, int output_fd, int iter)
 	name = (ft_strjoin("tmp_file_no_", ft_itoa(iter)));
 	if (iter != 0)
 	{
-		close(input_fd);
-		input_fd = open(ft_strjoin("tmp_file_no_", ft_itoa(iter - 1)), O_RDONLY);
+		close(*input_fd);
+		*input_fd = open(ft_strjoin("tmp_file_no_", ft_itoa(iter - 1)), O_RDONLY);
 	}
 	if (output_fd == -1)
 		output_fd = create_file(name);
 	if ((child = fork()) == -1)
 		exit_handler(0, NULL);
 	if (child == 0)
-		exec_child(input_fd, cmd_data, output_fd);
+		exec_child(*input_fd, cmd_data, output_fd);
 	waitpid(child, &child_status, 0);
 	if (child_status != 0)
 	{

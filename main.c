@@ -6,7 +6,7 @@
 /*   By: vdenisse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/16 11:31:38 by vdenisse          #+#    #+#             */
-/*   Updated: 2023/09/01 11:18:12 by vdenisse         ###   ########.fr       */
+/*   Updated: 2023/09/01 11:34:22 by vdenisse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,10 @@ int main(int argc, char *argv[], char *envp[]) {
 
 	data = data_init(argc, argv, envp);
 	pipex(data);
-//	print_data(data);
-	delete_tmp_files(data);
+	print_data(data);
+//	delete_tmp_files(data);
 	free_data(data);
+	perror("final errno");
     return 0;
 }
 
