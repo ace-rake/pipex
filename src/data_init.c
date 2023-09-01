@@ -6,7 +6,7 @@
 /*   By: vdenisse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 14:37:47 by vdenisse          #+#    #+#             */
-/*   Updated: 2023/08/30 15:29:31 by vdenisse         ###   ########.fr       */
+/*   Updated: 2023/09/01 11:54:52 by vdenisse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ t_data *data_init(int argc, char *argv[], char *envp[])
 		exit_handler(0,data);
 	data->cmd_amount = argc - 3;
 	if (data->cmd_amount < 2)
-		exit_handler(0, data);
+		exit_handler(2, data);
 	data->cmds = (t_cmd_data **)malloc((data->cmd_amount + 1) * sizeof(t_cmd_data *));
 	iter = -1;
 	while (++iter < data->cmd_amount)
