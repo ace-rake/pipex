@@ -6,7 +6,7 @@
 /*   By: vdenisse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/01 12:22:17 by vdenisse          #+#    #+#             */
-/*   Updated: 2023/09/01 12:22:39 by vdenisse         ###   ########.fr       */
+/*   Updated: 2023/09/04 11:18:32 by vdenisse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,15 @@ void	print_data(t_data *data)
 	int	iter;
 	int	jter;
 
-	printf("\ncmd_amount : [%i]\ninput fd : [%i]\noutput fd : [%i]\n\n", data->cmd_amount, data->input_fd, data->output_fd);
+	printf("\ncmd_amount : [%i]\ninput fd : [%i]\noutput fd : [%i]\n\n",
+			data->cmd_amount,
+			data->input_fd,
+			data->output_fd);
 	iter = 0;
 	while (iter < data->cmd_amount)
 	{
-		printf("cmd_line : [%s]\ncmd_path : [%s]\n", data->cmds[iter]->cmd_line, data->cmds[iter]->cmd_path);
+		printf("cmd_line : [%s]\ncmd_path : [%s]\n", data->cmds[iter]->cmd_line,
+				data->cmds[iter]->cmd_path);
 		jter = 0;
 		printf("args start\n");
 		while (data->cmds[iter]->args[jter] != NULL)
@@ -34,15 +38,16 @@ void	print_data(t_data *data)
 	}
 }
 
-int main(int argc, char *argv[], char *envp[]) {
-	t_data *data = NULL;
+int	main(int argc, char *argv[], char *envp[])
+{
+	t_data	*data;
 
+	data = NULL;
 	data = data_init(argc, argv, envp);
-	pipex(data);
-	print_data(data);
+//	pipex(data);
+//	print_data(data);
 //	delete_tmp_files(data);
-	free_data(data);
+//	free_data(data);
 	perror("final errno");
-    return 0;
+	return (0);
 }
-

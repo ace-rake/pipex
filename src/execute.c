@@ -6,24 +6,37 @@
 /*   By: vdenisse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/01 12:22:28 by vdenisse          #+#    #+#             */
-/*   Updated: 2023/09/01 12:22:47 by vdenisse         ###   ########.fr       */
+/*   Updated: 2023/09/01 13:34:13 by vdenisse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../inc/pipex.h"
 
-int	create_file(char *name)
+char	*tmp_file_name_gen(int iter)
 {
-	int fd;
+	char	*name;
+	char	*nbr;
 
+	nbr = ft_itoa(iter);
+	name = ft_strjoin(TMP_FILE_NAME, nbr);
+	free(nbr);
+	return (name);
+}
+
+int	create_file(int iter)
+{
+	int		fd;
+	char	*name;
+
+	name = tmp_file_name_gen(iter);
 	fd = open(name, O_RDWR | O_CREAT | O_TRUNC, S_IRUSR | S_IWUSR);
-	if (fd == -1)
-		exit_handler(0, NULL);
+	free(name);
 	return (fd);
 }
 
 int	exec_child(int input, t_cmd_data *cmd_data, int output)
 {
-	if (dup2(input, STDIN_FILENO) == -1 || dup2(output, STDOUT_FILENO) == -1)	{
+	if (dup2(input, STDIN_FILENO) == -1 || dup2(output, STDOUT_FILENO) == -1)
+	{
 		close(input);
 		close(output);
 		exit(errno);
@@ -37,20 +50,23 @@ int	exec_child(int input, t_cmd_data *cmd_data, int output)
 //return output_fd
 int	execute(int *input_fd, t_cmd_data *cmd_data, int output_fd, int iter)
 {
-	pid_t child;
-	int	child_status;
-	char *name;
+	pid_t	child;
+	int		child_status;
+	char	*name;
 
-	name = (ft_strjoin("tmp_file_no_", ft_itoa(iter)));
 	if (iter != 0)
 	{
+		name = tmp_file_name_gen(iter - 1);
 		close(*input_fd);
-		*input_fd = open(ft_strjoin("tmp_file_no_", ft_itoa(iter - 1)), O_RDONLY);
+		*input_fd = open(name, O_RDONLY);
+		free(name);
 	}
 	if (output_fd == -1)
-		output_fd = create_file(name);
+		output_fd = create_file(iter);
+	if (output_fd == -1)
+		return (-1);
 	if ((child = fork()) == -1)
-		exit_handler(0, NULL);
+		return (-1);
 	if (child == 0)
 		exec_child(*input_fd, cmd_data, output_fd);
 	waitpid(child, &child_status, 0);

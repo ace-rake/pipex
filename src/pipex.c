@@ -12,7 +12,6 @@
 
 #include "../inc/pipex.h"
 
-
 //return last fd written to
 int	pipex(t_data *data)
 {
@@ -28,7 +27,8 @@ int	pipex(t_data *data)
 		current_output_fd = -1;
 		if (iter == data->cmd_amount - 1)
 			current_output_fd = data->output_fd;
-		tmp_fd = execute(&current_input_fd, data->cmds[iter], current_output_fd, iter);
+		tmp_fd = execute(&current_input_fd, data->cmds[iter], current_output_fd,
+				iter);
 		close(current_input_fd);
 		current_input_fd = tmp_fd;
 		if (current_input_fd == -1)
