@@ -6,7 +6,7 @@
 /*   By: vdenisse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/01 12:22:28 by vdenisse          #+#    #+#             */
-/*   Updated: 2023/09/01 13:34:13 by vdenisse         ###   ########.fr       */
+/*   Updated: 2023/09/05 11:22:44 by vdenisse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../inc/pipex.h"
@@ -47,11 +47,8 @@ int	exec_child(int input, t_cmd_data *cmd_data, int output)
 	exit(-1);
 }
 
-//return output_fd
-int	execute(int *input_fd, t_cmd_data *cmd_data, int output_fd, int iter)
+int	set_fd(int	*input_fd, int *output_fd, int iter)
 {
-	pid_t	child;
-	int		child_status;
 	char	*name;
 
 	if (iter != 0)
@@ -61,11 +58,23 @@ int	execute(int *input_fd, t_cmd_data *cmd_data, int output_fd, int iter)
 		*input_fd = open(name, O_RDONLY);
 		free(name);
 	}
-	if (output_fd == -1)
-		output_fd = create_file(iter);
-	if (output_fd == -1)
+	if (*output_fd == -1)
+		*output_fd = create_file(iter);
+	if (*output_fd == -1)
 		return (-1);
-	if ((child = fork()) == -1)
+	return (0);
+}
+
+//return output_fd
+int	execute(int *input_fd, t_cmd_data *cmd_data, int output_fd, int iter)
+{
+	pid_t	child;
+	int		child_status;
+
+	if (set_fd(input_fd, &output_fd, iter))
+		return (-1);
+	child = fork();
+	if (child == -1)
 		return (-1);
 	if (child == 0)
 		exec_child(*input_fd, cmd_data, output_fd);

@@ -6,7 +6,7 @@
 /*   By: vdenisse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 14:39:46 by vdenisse          #+#    #+#             */
-/*   Updated: 2023/09/01 12:51:52 by vdenisse         ###   ########.fr       */
+/*   Updated: 2023/09/05 11:17:57 by vdenisse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,15 +40,17 @@ void	free_data(t_data *data)
 	cmds = data->cmds;
 	iter = 0;
 	if (cmds)
+	{
 		while (iter < data->cmd_amount)
 		{
 			free_cmd_data(data->cmds[iter]);
 			iter++;
 		}
+	}
 	free(cmds);
 	free(data);
 }
-char	*tmp_file_name_gen(int iter);
+
 void	delete_tmp_files(t_data *data)
 {
 	int		iter;

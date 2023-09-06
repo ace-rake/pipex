@@ -1,3 +1,7 @@
+# Mine
+.gitignore
+.gdbinit
+
 # Prerequisites
 *.d
 

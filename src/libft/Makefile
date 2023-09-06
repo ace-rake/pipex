@@ -9,14 +9,21 @@ OBJ := $(SRC:.c=.o)
 OBJB = $(SRCB:.c=.o)
 .PHONY: all clean fclean re
 all: $(NAME)
+
 $(NAME): $(OBJ)
-	$(AR) $(ARFLAGS) $(NAME) $^
+	@echo "creating $@"
+	@$(AR) $(ARFLAGS) $(NAME) $^
+
 %.o: %.c
-	$(CC) $(CFLAGS) -c $< -o $@
+	@echo "creating $@"
+	@$(CC) $(CFLAGS) -c $< -o $@
+
 clean:
 	rm -f $(OBJ)
+
 fclean: clean
 	rm -f $(NAME)
+
 re: fclean all
 
 bonus: $(OBJB)

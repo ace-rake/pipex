@@ -6,13 +6,11 @@
 /*   By: vdenisse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 14:37:47 by vdenisse          #+#    #+#             */
-/*   Updated: 2023/09/04 11:39:06 by vdenisse         ###   ########.fr       */
+/*   Updated: 2023/09/05 11:13:16 by vdenisse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/pipex.h"
-
-
 
 t_cmd_data	*cmd_data_con(char *cmd_line, char *envp[])
 {
@@ -21,7 +19,7 @@ t_cmd_data	*cmd_data_con(char *cmd_line, char *envp[])
 	cmd_data = (t_cmd_data *)malloc(sizeof(t_cmd_data));
 	if (!cmd_data)
 		exit_handler(0, NULL);
-	cmd_data->args =  ft_split(cmd_line, ' ');
+	cmd_data->args = ft_str_full_split(cmd_line, ' ');
 	if (cmd_data->args == NULL)
 	{
 		free_cmd_data(cmd_data);
@@ -54,7 +52,7 @@ t_data	*data_init(int argc, char *argv[], char *envp[])
 	if (!data)
 		exit_handler(3, data);
 	data->cmd_amount = argc - 3;
-	if (data->cmd_amount < 2)
+	if (data->cmd_amount < 1)
 		exit_handler(2, data);
 	data->cmds = (t_cmd_data **)malloc((data->cmd_amount + 1)
 			* sizeof(t_cmd_data *));

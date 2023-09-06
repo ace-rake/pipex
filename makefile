@@ -23,7 +23,7 @@ $(NAME): $(SRCS_OBJS) $(MAIN_OBJ) $(HEADERS)
 bt: $(SRCS_OBJS) $(HEADERS)
 	@echo "compiling $@"
 	@make -C src/libft
-	@cc $(SRCS_OBJS) test.c -Lsrc/libft -lft -o test
+	@cc $(SRCS_OBJS) -g test.c -Lsrc/libft -lft -o test
 
 
 

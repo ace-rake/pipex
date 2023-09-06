@@ -6,7 +6,7 @@
 /*   By: vdenisse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 09:30:24 by vdenisse          #+#    #+#             */
-/*   Updated: 2023/09/04 13:44:27 by vdenisse         ###   ########.fr       */
+/*   Updated: 2023/09/05 11:23:31 by vdenisse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,8 +62,9 @@ char	*find_next_path(char **all_path, char *cmd)
 	return (curr_path);
 }
 
-//all path in this context is a pointer to the envp PATH= and thus does not need to be freed
-
+/*all path in this context is a pointer to the envp PATH= 
+ *and thus does not need to be freed
+ */
 char	*path_finder(char *envp[], char *cmd)
 {
 	char	*all_path;
