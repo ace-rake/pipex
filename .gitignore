@@ -1,6 +1,8 @@
 # Mine
 .gitignore
 .gdbinit
+outfile
+infile
 
 # Prerequisites
 *.d
