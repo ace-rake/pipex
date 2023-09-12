@@ -6,7 +6,7 @@
 /*   By: vdenisse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 11:47:45 by vdenisse          #+#    #+#             */
-/*   Updated: 2023/09/05 11:24:25 by vdenisse         ###   ########.fr       */
+/*   Updated: 2023/09/12 09:54:30 by vdenisse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@
 # include <unistd.h>
 
 # ifndef TMP_FILE_NAME
-#  define TMP_FILE_NAME "tmp_file_no_"
+#  define TMP_FILE_NAME "/tmp/tmp_file_no_"
 # endif
 # define OUTPUT 1
 # define INPUT 0

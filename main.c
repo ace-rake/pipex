@@ -6,12 +6,12 @@
 /*   By: vdenisse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/01 12:22:17 by vdenisse          #+#    #+#             */
-/*   Updated: 2023/09/05 11:24:01 by vdenisse         ###   ########.fr       */
+/*   Updated: 2023/09/11 11:34:07 by vdenisse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "inc/pipex.h"
-/*
+
 void	print_data(t_data *data)
 {
 	int	iter;
@@ -37,13 +37,14 @@ void	print_data(t_data *data)
 		iter++;
 	}
 }
-*/
+
 int	main(int argc, char *argv[], char *envp[])
 {
 	t_data	*data;
 
 	data = NULL;
 	data = data_init(argc, argv, envp);
+	print_data(data);
 	pipex(data);
 	delete_tmp_files(data);
 	free_data(data);

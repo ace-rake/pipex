@@ -6,7 +6,7 @@
 /*   By: vdenisse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 08:52:36 by vdenisse          #+#    #+#             */
-/*   Updated: 2023/09/05 11:57:51 by vdenisse         ###   ########.fr       */
+/*   Updated: 2023/09/11 11:41:30 by vdenisse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,12 +96,13 @@ char	**ft_str_full_split(char *str, char separator)
 {
 	char	**result;
 	int		iter;
+	int	words = word_count(str, separator);
 
-	result = (char **)malloc((word_count(str, separator) + 1) * sizeof(char *));
+	result = (char **)malloc((words + 1) * sizeof(char *));
 	if (!result)
 		return (NULL);
 	iter = -1;
-	while (++iter < word_count(str, separator))
+	while (++iter < words)
 	{
 		while (*str == separator && *str != '\0')
 			str++;
