@@ -6,7 +6,7 @@
 /*   By: vdenisse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 11:47:45 by vdenisse          #+#    #+#             */
-/*   Updated: 2023/09/12 09:54:30 by vdenisse         ###   ########.fr       */
+/*   Updated: 2023/09/25 13:50:56 by vdenisse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,6 @@ int				execute(int *input_fd, t_cmd_data *cmd_data, int output_fd,
 					int iter);
 int				pipex(t_data *data);
 char			**ft_str_full_split(char *str, char separator);
-
+int	get_arg(char *result,char separator, char *str);
 char			*tmp_file_name_gen(int iter);
 #endif

@@ -6,7 +6,7 @@
 /*   By: vdenisse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/01 12:22:17 by vdenisse          #+#    #+#             */
-/*   Updated: 2023/09/11 11:34:07 by vdenisse         ###   ########.fr       */
+/*   Updated: 2023/09/25 13:21:24 by vdenisse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,14 @@ void	print_data(t_data *data)
 	int	jter;
 
 	printf("\ncmd_amount : [%i]\ninput fd : [%i]\noutput fd : [%i]\n\n",
-			data->cmd_amount,
-			data->input_fd,
-			data->output_fd);
+		data->cmd_amount,
+		data->input_fd,
+		data->output_fd);
 	iter = 0;
 	while (iter < data->cmd_amount)
 	{
 		printf("cmd_line : [%s]\ncmd_path : [%s]\n", data->cmds[iter]->cmd_line,
-				data->cmds[iter]->cmd_path);
+			data->cmds[iter]->cmd_path);
 		jter = 0;
 		printf("args start\n");
 		while (data->cmds[iter]->args[jter] != NULL)

@@ -1,45 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   split_full_spring.c                                :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vdenisse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/05 08:52:36 by vdenisse          #+#    #+#             */
-/*   Updated: 2023/09/25 13:58:32 by vdenisse         ###   ########.fr       */
+/*   Created: 2023/09/25 13:46:29 by vdenisse          #+#    #+#             */
+/*   Updated: 2023/09/25 13:53:27 by vdenisse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/pipex.h"
 
-int	word_count(char *str, char separator)
-{
-	int	result;
-	int	iter;
-
-	iter = 0;
-	result = 0;
-	while (str[iter] != '\0')
-	{
-		while (str[iter] == separator)
-			iter++;
-		if (str[iter] != '\0' && str[iter] != '\"')
-			while (str[iter] != separator && str[iter] != '\0')
-				iter++;
-		else if (str[iter] == '\"')
-		{
-			iter++;
-			while (str[iter] != '\"' && str[iter] != '\0')
-				iter++;
-			if (str[iter] == '\0')
-				return (++result);
-			iter++;
-		}
-		result++;
-	}
-	return (result);
-}
-
+//ft_str_full_split util
+/*
 int	get_next_length(char *str, char separator)
 {
 	int	result;
@@ -49,11 +23,12 @@ int	get_next_length(char *str, char separator)
 		result++;
 	while (str[result] != separator && str[result])
 		result++;
+	if (!str[result])
+		return (result);
 	if (separator == '\"' && str[result] == separator)
 		result++;
 	return (result);
 }
-
 char	*get_word(char *str, char separator)
 {
 	char	*result;
@@ -87,35 +62,23 @@ char	*get_string(char *str)
 		result[iter] = str[iter];
 		++iter;
 	}
+	if (!str[iter])
+	{
+		free(result);
+		return (NULL);
+	}
 	result[iter] = '\0';
 	return (result);
 }
-
-char	**ft_str_full_split(char *str, char separator)
+int	get_arg(char *result,char separator, char *str)
 {
-	char	**result;
-	int		iter;
-	int	words = word_count(str, separator);
-
-	result = (char **)malloc((words + 1) * sizeof(char *));
-	if (!result)
-		return (NULL);
-	iter = -1;
-	while (++iter < words)
+	if (*str == '\"')
 	{
-		while (*str == separator && *str != '\0')
-			str++;
-		if (*str == '\"')
-			result[iter] = get_string(++str);
-		else
-			result[iter] = get_word(str, separator);
-		if (result[iter] == NULL)
-			while (--iter >= 0)
-				free(result[iter]);
-		if (result[iter] == NULL)
-			return (NULL);
-		str += ft_strlen(result[iter]);
+		result = get_string(++str);
+		return (1);
 	}
-	result[iter] = NULL;
-	return (result);
+	else
+		result = get_word(str, separator);
+	return (0);
 }
+*/
