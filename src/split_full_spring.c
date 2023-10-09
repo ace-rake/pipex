@@ -6,7 +6,7 @@
 /*   By: vdenisse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 08:52:36 by vdenisse          #+#    #+#             */
-/*   Updated: 2023/09/25 13:58:32 by vdenisse         ###   ########.fr       */
+/*   Updated: 2023/10/09 13:27:52 by vdenisse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,11 +91,10 @@ char	*get_string(char *str)
 	return (result);
 }
 
-char	**ft_str_full_split(char *str, char separator)
+char	**ft_str_full_split(char *str, char separator, int words)
 {
 	char	**result;
 	int		iter;
-	int	words = word_count(str, separator);
 
 	result = (char **)malloc((words + 1) * sizeof(char *));
 	if (!result)

@@ -6,26 +6,26 @@
 /*   By: vdenisse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 14:37:47 by vdenisse          #+#    #+#             */
-/*   Updated: 2023/09/11 11:36:18 by vdenisse         ###   ########.fr       */
+/*   Updated: 2023/10/09 13:29:43 by vdenisse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/pipex.h"
 
-t_cmd_data	*cmd_data_con(char *cmd_line, char *envp[])
+t_cmd_data	*cmd_data_con(char *str, char *envp[])
 {
 	t_cmd_data	*cmd_data;
 
 	cmd_data = (t_cmd_data *)malloc(sizeof(t_cmd_data));
 	if (!cmd_data)
 		exit_handler(0, NULL);
-	cmd_data->args = ft_str_full_split(cmd_line, ' ');
+	cmd_data->args = ft_str_full_split(str, ' ', word_count(str, ' '));
 	if (cmd_data->args == NULL)
 	{
 		free_cmd_data(cmd_data);
 		return (NULL);
 	}
-	cmd_data->cmd_line = cmd_line;
+	cmd_data->cmd_line = str;
 	cmd_data->cmd_path = path_finder(envp, cmd_data->args[0]);
 	if (!cmd_data->args || !cmd_data->cmd_path)
 	{

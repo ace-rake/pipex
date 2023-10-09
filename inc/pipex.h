@@ -6,7 +6,7 @@
 /*   By: vdenisse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 11:47:45 by vdenisse          #+#    #+#             */
-/*   Updated: 2023/09/26 09:46:25 by vdenisse         ###   ########.fr       */
+/*   Updated: 2023/10/09 13:27:35 by vdenisse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,8 @@ char			*path_finder(char *envp[], char *cmd);
 int				execute(int *input_fd, t_cmd_data *cmd_data, int output_fd,
 					int iter);
 int				pipex(t_data *data);
-char			**ft_str_full_split(char *str, char separator);
+char			**ft_str_full_split(char *str, char separator, int words);
+int				word_count(char *str, char separator);
 int				get_arg(char *result, char separator, char *str);
 char			*tmp_file_name_gen(int iter);
 #endif

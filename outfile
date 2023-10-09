@@ -2,5 +2,5 @@
 -rw-r--r-- 1 vdenisse 2023_s19   686 Sep  6 10:19 infile
 -rw-r--r-- 1 vdenisse 2023_s19  1674 Sep 25 13:21 main.c
 -rw-r--r-- 1 vdenisse 2023_s19   749 Sep  6 10:19 makefile
--rw-r--r-- 1 vdenisse 2023_s19     0 Sep 25 14:46 outfile
--rwxr-xr-x 1 vdenisse 2023_s19 32920 Sep 25 13:58 pipex
+-rw-r--r-- 1 vdenisse 2023_s19     0 Oct  9 13:29 outfile
+-rwxr-xr-x 1 vdenisse 2023_s19 32936 Oct  9 13:29 pipex
