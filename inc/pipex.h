@@ -6,14 +6,14 @@
 /*   By: vdenisse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 11:47:45 by vdenisse          #+#    #+#             */
-/*   Updated: 2023/10/09 13:27:35 by vdenisse         ###   ########.fr       */
+/*   Updated: 2023/10/14 14:19:04 by vdenisse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PIPEX_H
 # define PIPEX_H
-
-# include "../src/libft/libft.h"
+//test
+# include "../src/libft/header/libft.h"
 # include <errno.h>
 # include <fcntl.h>
 # include <string.h>

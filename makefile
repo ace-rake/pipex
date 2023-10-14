@@ -6,9 +6,11 @@ ERRFLAGS:= -Wall -Werror -Wextra
 FLAGS:= -g -O0	
 SRCS:= $(wildcard src/*.c)
 MAIN:= main.c
+TEST:= test.c
 
 OBJDIR:= obj
 MAIN_OBJ:= $(MAIN:%.c=$(OBJDIR)/%.o)
+TEST_OBJ:= $(MAIN:%.c=$(OBJDIR)/%.o)
 SRCS_OBJS:= $(SRCS:%.c=$(OBJDIR)/%.o)
 
 all: $(NAME)
@@ -23,7 +25,7 @@ $(NAME): $(SRCS_OBJS) $(MAIN_OBJ) $(HEADERS)
 bt: $(SRCS_OBJS) $(HEADERS)
 	@echo "compiling $@"
 	@make -C src/libft
-	@cc $(SRCS_OBJS) -g test.c -Lsrc/libft -lft -o test
+	@cc $(SRCS_OBJS) -g $(TEST_OBJ) -Lsrc/libft -lft -o test
 
 
 
@@ -35,7 +37,7 @@ $(OBJDIR)/%.o: %.c $(HEADERS)
 clean:
 	@echo "cleaning libft"
 	@make clean -C src/libft
-	rm -rf $(OBJDIR)
+	@rm -rf $(OBJDIR)
 
 fclean: clean
 	rm -rf $(NAME)
