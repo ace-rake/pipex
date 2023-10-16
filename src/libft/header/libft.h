@@ -6,7 +6,7 @@
 /*   By: vdenisse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 16:43:44 by vdenisse          #+#    #+#             */
-/*   Updated: 2023/10/14 14:11:10 by vdenisse         ###   ########.fr       */
+/*   Updated: 2023/10/16 10:31:18 by vdenisse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 
 typedef struct s_list
 {
-	int			content;
+	int				content;
 	struct s_list	*next;
 }					t_list;
 
