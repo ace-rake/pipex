@@ -20,7 +20,7 @@ ALLFLAGS:= $(ERRFLAGS) $(FLAGS)
 $(NAME): $(SRCS_OBJS) $(MAIN_OBJ) $(HEADERS)
 	@echo "compiling $@"
 	@make -C src/libft
-	@cc $(SRCS_OBJS) $(MAIN_OBJ) -Lsrc/libft -lft -o $@
+	@cc $(ALLFLAGS) $(SRCS_OBJS) $(MAIN_OBJ) -Lsrc/libft -lft -o $@
 
 bt: $(SRCS_OBJS) $(HEADERS)
 	@echo "compiling $@"
@@ -32,7 +32,7 @@ bt: $(SRCS_OBJS) $(HEADERS)
 $(OBJDIR)/%.o: %.c $(HEADERS)
 	@mkdir -p $(@D)
 	@echo "creating $@"
-	@gcc -c $(FLAGS) $< -o $@
+	@gcc -c $(ALLFLAGS) $< -o $@
 
 clean:
 	@echo "cleaning libft"

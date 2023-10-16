@@ -6,7 +6,7 @@
 /*   By: vdenisse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 14:39:46 by vdenisse          #+#    #+#             */
-/*   Updated: 2023/09/05 11:17:57 by vdenisse         ###   ########.fr       */
+/*   Updated: 2023/10/16 15:14:08 by vdenisse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ void	free_data(t_data *data)
 			iter++;
 		}
 	}
+	close(data->output_fd);
 	free(cmds);
 	free(data);
 }

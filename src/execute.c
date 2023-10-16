@@ -6,7 +6,7 @@
 /*   By: vdenisse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/01 12:22:28 by vdenisse          #+#    #+#             */
-/*   Updated: 2023/09/05 11:22:44 by vdenisse         ###   ########.fr       */
+/*   Updated: 2023/10/16 15:14:45 by vdenisse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../inc/pipex.h"
@@ -64,8 +64,20 @@ int	set_fd(int	*input_fd, int *output_fd, int iter)
 		return (-1);
 	return (0);
 }
+int	check_child(int child_status)
+{
+	if (WIFEXITED(child_status))
+	{
+		child_status = WEXITSTATUS(child_status);
+		if (child_status != 0)
+		{
+			errno = child_status;
+			return (-1);
+		}
+	}
+	return (0);
+}
 
-//return output_fd
 int	execute(int *input_fd, t_cmd_data *cmd_data, int output_fd, int iter)
 {
 	pid_t	child;
@@ -75,15 +87,17 @@ int	execute(int *input_fd, t_cmd_data *cmd_data, int output_fd, int iter)
 		return (-1);
 	child = fork();
 	if (child == -1)
+	{
+		close(*input_fd);
+		close(output_fd);
 		return (-1);
+	}
 	if (child == 0)
 		exec_child(*input_fd, cmd_data, output_fd);
 	waitpid(child, &child_status, 0);
-	if (child_status != 0)
-	{
-		close(output_fd);
-		errno = child_status;
+	close(*input_fd);
+	close(output_fd);
+	if (check_child(child_status))
 		return (-1);
-	}
-	return (output_fd);
+	return (0);
 }

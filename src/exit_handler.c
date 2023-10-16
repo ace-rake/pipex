@@ -6,7 +6,7 @@
 /*   By: vdenisse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/24 13:32:55 by vdenisse          #+#    #+#             */
-/*   Updated: 2023/09/05 11:16:45 by vdenisse         ###   ########.fr       */
+/*   Updated: 2023/10/16 12:52:02 by vdenisse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 
 void	exit_handler(int cust_errno, t_data *data)
 {
-	delete_tmp_files(data);
+	if (data)
+		delete_tmp_files(data);
 	if (data)
 		free_data(data);
 	if (cust_errno == 0)

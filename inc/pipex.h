@@ -6,24 +6,33 @@
 /*   By: vdenisse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 11:47:45 by vdenisse          #+#    #+#             */
-/*   Updated: 2023/10/14 14:19:04 by vdenisse         ###   ########.fr       */
+/*   Updated: 2023/10/16 13:47:14 by vdenisse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PIPEX_H
 # define PIPEX_H
-//test
+
 # include "../src/libft/header/libft.h"
+//errno
 # include <errno.h>
+
+//open
 # include <fcntl.h>
-# include <string.h>
 
 //needed for perror
 # include <stdio.h>
-# include <stdlib.h>
-# include <sys/stat.h>
+
+//waitpid
 # include <sys/wait.h>
-# include <unistd.h>
+
+//S_IRUSR, macro for rights of created files
+# include <sys/stat.h>
+
+
+//# include <stdlib.h>
+//# include <string.h>
+//# include <unistd.h>
 
 # ifndef TMP_FILE_NAME
 #  define TMP_FILE_NAME "/tmp/tmp_file_no_"

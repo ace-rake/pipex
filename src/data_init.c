@@ -6,7 +6,7 @@
 /*   By: vdenisse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 14:37:47 by vdenisse          #+#    #+#             */
-/*   Updated: 2023/10/09 13:29:43 by vdenisse         ###   ########.fr       */
+/*   Updated: 2023/10/16 13:00:40 by vdenisse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int	opener(char *file, int mode)
 {
 	int	fd;
 
-	fd = open(file, mode);
+	fd = open(file, mode, S_IRUSR | S_IWUSR | S_IRGRP | S_IROTH);
 	return (fd);
 }
 
@@ -64,7 +64,7 @@ t_data	*data_init(int argc, char *argv[], char *envp[])
 			exit_handler(3, data);
 	}
 	data->input_fd = opener(argv[1], O_RDONLY);
-	data->output_fd = opener(argv[argc - 1], O_WRONLY | O_TRUNC);
+	data->output_fd = opener(argv[argc - 1], O_WRONLY | O_TRUNC | O_CREAT);
 	if (data->output_fd == -1 || data->input_fd == -1)
 		exit_handler(3, data);
 	return (data);
