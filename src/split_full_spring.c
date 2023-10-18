@@ -6,7 +6,7 @@
 /*   By: vdenisse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 08:52:36 by vdenisse          #+#    #+#             */
-/*   Updated: 2023/10/18 10:34:18 by vdenisse         ###   ########.fr       */
+/*   Updated: 2023/10/18 11:57:42 by vdenisse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,8 @@ int	word_count(char *str, char separator)
 		else if (str[iter] == '\"' || str[iter] == '\'')
 		{
 			iter++;
-			while ((str[iter] != '\"' || str[iter] != '\'') && str[iter] != '\0')
+			while ((str[iter] != '\"' || str[iter] != '\'') \
+					&& str[iter] != '\0')
 				iter++;
 			if (str[iter] == '\0')
 				return (++result);
@@ -45,10 +46,12 @@ int	get_next_length(char *str, char separator)
 	int	result;
 
 	result = 0;
-	if ((separator == '\"' || separator == '\'' )&& str[0] == separator)
+	if ((separator == '\"' || separator == '\'') && str[0] == separator)
 		result++;
 	while (str[result] != separator && str[result])
 		result++;
+	if (str[result] != separator)
+		return (-1);
 	if ((separator == '\"' || separator == '\'') && str[result] == separator)
 		result++;
 	return (result);
@@ -78,9 +81,13 @@ char	*get_string(char *str)
 	char	*result;
 	int		iter;
 	char	separator;
+	int		length;
 
 	separator = *(str - 1);
-	result = (char *)malloc((get_next_length(str, separator) + 1) * sizeof(char));
+	length = get_next_length(str, separator);
+	if (length == -1)
+		return (NULL);
+	result = (char *)malloc((length + 1) * sizeof(char));
 	if (!result)
 		return (NULL);
 	iter = 0;
@@ -111,10 +118,11 @@ char	**ft_str_full_split(char *str, char separator, int words)
 		else
 			result[iter] = get_word(str, separator);
 		if (result[iter] == NULL)
+		{		
 			while (--iter >= 0)
 				free(result[iter]);
-		if (result[iter] == NULL)
 			return (NULL);
+		}
 		str += ft_strlen(result[iter]);
 	}
 	result[iter] = NULL;

@@ -6,7 +6,7 @@
 /*   By: vdenisse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/01 12:22:28 by vdenisse          #+#    #+#             */
-/*   Updated: 2023/10/18 11:08:12 by vdenisse         ###   ########.fr       */
+/*   Updated: 2023/10/18 11:56:03 by vdenisse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../inc/pipex.h"
@@ -47,7 +47,7 @@ int	exec_child(int input, t_cmd_data *cmd_data, int output)
 	exit(-1);
 }
 
-int	set_fd(int	*input_fd, int *output_fd, int iter)
+int	set_fd(int *input_fd, int *output_fd, int iter)
 {
 	char	*name;
 
@@ -64,6 +64,7 @@ int	set_fd(int	*input_fd, int *output_fd, int iter)
 		return (-1);
 	return (0);
 }
+
 int	check_child(int child_status)
 {
 	if (WIFEXITED(child_status))
