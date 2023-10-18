@@ -6,7 +6,7 @@
 /*   By: vdenisse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/24 13:32:55 by vdenisse          #+#    #+#             */
-/*   Updated: 2023/10/16 12:52:02 by vdenisse         ###   ########.fr       */
+/*   Updated: 2023/10/18 11:24:06 by vdenisse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 void	exit_handler(int cust_errno, t_data *data)
 {
+	printf("holla %d\n", errno);
 	if (data)
 		delete_tmp_files(data);
 	if (data)
@@ -27,5 +28,7 @@ void	exit_handler(int cust_errno, t_data *data)
 		perror("no commands given");
 	if (cust_errno == 3)
 		perror("data_init");
+	if (cust_errno == 4)
+		perror("child_failure");
 	exit(errno);
 }

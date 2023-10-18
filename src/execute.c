@@ -6,7 +6,7 @@
 /*   By: vdenisse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/01 12:22:28 by vdenisse          #+#    #+#             */
-/*   Updated: 2023/10/16 15:14:45 by vdenisse         ###   ########.fr       */
+/*   Updated: 2023/10/18 11:08:12 by vdenisse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../inc/pipex.h"
@@ -98,6 +98,6 @@ int	execute(int *input_fd, t_cmd_data *cmd_data, int output_fd, int iter)
 	close(*input_fd);
 	close(output_fd);
 	if (check_child(child_status))
-		return (-1);
+		return (4);
 	return (0);
 }

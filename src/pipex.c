@@ -6,7 +6,7 @@
 /*   By: vdenisse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 10:22:55 by vdenisse          #+#    #+#             */
-/*   Updated: 2023/10/16 12:58:34 by vdenisse         ###   ########.fr       */
+/*   Updated: 2023/10/18 11:08:12 by vdenisse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@ int	pipex(t_data *data)
 		result = execute(&current_input_fd, data->cmds[iter], current_output_fd,
 				iter);
 		close(current_input_fd);
-		if (result == -1)
-			exit_handler(0, data);
+		if (result != 0)
+			exit_handler(result, data);
 		iter++;
 	}
 	return (current_input_fd);

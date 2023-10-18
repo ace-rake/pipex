@@ -6,7 +6,7 @@
 /*   By: vdenisse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 08:52:36 by vdenisse          #+#    #+#             */
-/*   Updated: 2023/10/09 13:27:52 by vdenisse         ###   ########.fr       */
+/*   Updated: 2023/10/18 10:34:18 by vdenisse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,13 +23,13 @@ int	word_count(char *str, char separator)
 	{
 		while (str[iter] == separator)
 			iter++;
-		if (str[iter] != '\0' && str[iter] != '\"')
+		if (str[iter] != '\0' && (str[iter] != '\"' || str[iter] != '\''))
 			while (str[iter] != separator && str[iter] != '\0')
 				iter++;
-		else if (str[iter] == '\"')
+		else if (str[iter] == '\"' || str[iter] == '\'')
 		{
 			iter++;
-			while (str[iter] != '\"' && str[iter] != '\0')
+			while ((str[iter] != '\"' || str[iter] != '\'') && str[iter] != '\0')
 				iter++;
 			if (str[iter] == '\0')
 				return (++result);
@@ -45,11 +45,11 @@ int	get_next_length(char *str, char separator)
 	int	result;
 
 	result = 0;
-	if (separator == '\"' && str[0] == separator)
+	if ((separator == '\"' || separator == '\'' )&& str[0] == separator)
 		result++;
 	while (str[result] != separator && str[result])
 		result++;
-	if (separator == '\"' && str[result] == separator)
+	if ((separator == '\"' || separator == '\'') && str[result] == separator)
 		result++;
 	return (result);
 }
@@ -77,12 +77,14 @@ char	*get_string(char *str)
 {
 	char	*result;
 	int		iter;
+	char	separator;
 
-	result = (char *)malloc((get_next_length(str, '\"') + 1) * sizeof(char));
+	separator = *(str - 1);
+	result = (char *)malloc((get_next_length(str, separator) + 1) * sizeof(char));
 	if (!result)
 		return (NULL);
 	iter = 0;
-	while (str[iter] != '\"' && str[iter])
+	while (str[iter] != separator && str[iter])
 	{
 		result[iter] = str[iter];
 		++iter;
@@ -104,7 +106,7 @@ char	**ft_str_full_split(char *str, char separator, int words)
 	{
 		while (*str == separator && *str != '\0')
 			str++;
-		if (*str == '\"')
+		if (*str == '\"' || *str == '\'')
 			result[iter] = get_string(++str);
 		else
 			result[iter] = get_word(str, separator);
