@@ -1,36 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstmap.c                                        :+:      :+:    :+:   */
+/*   tmp_file.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vdenisse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/08 10:46:38 by vdenisse          #+#    #+#             */
-/*   Updated: 2023/10/17 11:31:30 by vdenisse         ###   ########.fr       */
+/*   Created: 2023/10/18 13:30:24 by vdenisse          #+#    #+#             */
+/*   Updated: 2023/10/18 13:30:54 by vdenisse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../header/libft.h"
+#include "../inc/pipex.h"
 
-t_list	*ft_lstmap(t_list *lst, int (*f)(int))
+char	*tmp_file_name_gen(int iter)
 {
-	t_list	*new_list;
-	t_list	*new_node;
+	char	*name;
+	char	*nbr;
 
-	new_list = NULL;
-	new_node = NULL;
-	if (!lst || !f)
-		return (NULL);
-	while (lst != NULL)
-	{
-		new_node = ft_lstnew((*f)(lst->content));
-		if (!new_node)
-		{
-			ft_lstclear(&new_list);
-			return (NULL);
-		}
-		ft_lstadd_back(&new_list, new_node);
-		lst = lst->next;
-	}
-	return (new_list);
+	nbr = ft_itoa(iter);
+	name = ft_strjoin(TMP_FILE_NAME, nbr);
+	free(nbr);
+	return (name);
+}
+
+int	create_file(int iter)
+{
+	int		fd;
+	char	*name;
+
+	name = tmp_file_name_gen(iter);
+	fd = open(name, O_RDWR | O_CREAT | O_TRUNC, S_IRUSR | S_IWUSR);
+	free(name);
+	return (fd);
 }

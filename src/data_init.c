@@ -6,7 +6,7 @@
 /*   By: vdenisse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 14:37:47 by vdenisse          #+#    #+#             */
-/*   Updated: 2023/10/18 11:54:42 by vdenisse         ###   ########.fr       */
+/*   Updated: 2023/10/18 13:08:09 by vdenisse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,11 @@ t_cmd_data	*cmd_data_con(char *str, char *envp[])
 	cmd_data = (t_cmd_data *)malloc(sizeof(t_cmd_data));
 	if (!cmd_data)
 		exit_handler(0, NULL);
+	cmd_data->cmd_path = NULL;
 	cmd_data->args = ft_str_full_split(str, ' ', word_count(str, ' '));
-	if (cmd_data->args == NULL)
-	{
-		free_cmd_data(cmd_data);
-		return (NULL);
-	}
 	cmd_data->cmd_line = str;
-	cmd_data->cmd_path = path_finder(envp, cmd_data->args[0]);
+	if (cmd_data->args && cmd_data->args[0])
+		cmd_data->cmd_path = path_finder(envp, cmd_data->args[0]);
 	if (!cmd_data->args || !cmd_data->cmd_path)
 	{
 		free_cmd_data(cmd_data);

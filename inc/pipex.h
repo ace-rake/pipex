@@ -6,7 +6,7 @@
 /*   By: vdenisse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 11:47:45 by vdenisse          #+#    #+#             */
-/*   Updated: 2023/10/16 13:47:14 by vdenisse         ###   ########.fr       */
+/*   Updated: 2023/10/18 13:32:39 by vdenisse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@
 
 //S_IRUSR, macro for rights of created files
 # include <sys/stat.h>
-
 
 //# include <stdlib.h>
 //# include <string.h>
@@ -68,4 +67,5 @@ char			**ft_str_full_split(char *str, char separator, int words);
 int				word_count(char *str, char separator);
 int				get_arg(char *result, char separator, char *str);
 char			*tmp_file_name_gen(int iter);
+int				create_file(int iter);
 #endif

@@ -6,7 +6,7 @@
 /*   By: vdenisse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 08:52:36 by vdenisse          #+#    #+#             */
-/*   Updated: 2023/10/18 11:57:42 by vdenisse         ###   ########.fr       */
+/*   Updated: 2023/10/18 13:41:51 by vdenisse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	word_count(char *str, char separator)
 	{
 		while (str[iter] == separator)
 			iter++;
-		if (str[iter] != '\0' && (str[iter] != '\"' || str[iter] != '\''))
+		if (str[iter] != '\0' && (str[iter] != '\"' && str[iter] != '\''))
 			while (str[iter] != separator && str[iter] != '\0')
 				iter++;
 		else if (str[iter] == '\"' || str[iter] == '\'')
@@ -118,9 +118,8 @@ char	**ft_str_full_split(char *str, char separator, int words)
 		else
 			result[iter] = get_word(str, separator);
 		if (result[iter] == NULL)
-		{		
-			while (--iter >= 0)
-				free(result[iter]);
+		{
+			ft_free_char_array(result);
 			return (NULL);
 		}
 		str += ft_strlen(result[iter]);
