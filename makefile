@@ -3,7 +3,7 @@ NAME := pipex
 HEADERS:= inc/pipex.h
 
 ERRFLAGS:= -Wall -Werror -Wextra
-FLAGS:= -g -O0	
+FLAGS:= -g -O0
 SRCS:= $(wildcard src/*.c)
 MAIN:= main.c
 TEST:= test.c
